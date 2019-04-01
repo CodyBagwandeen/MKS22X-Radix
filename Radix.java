@@ -36,5 +36,7 @@ public class Radix{
   public static void main(String[] args){
     System.out.println("getDigit(51, 1) : Should be 1, Actual : " + getDigit(51,1));
     System.out.println("getDigit(12345,3) : Should be 3, Actual : " + getDigit(12345,3));
+    int[] a1 = {1,22,312,44,51,62,74,8};
+    System.out.println("getLength(a1) : Should be 3, Actual : " + getLength(a1));
   }
 }
