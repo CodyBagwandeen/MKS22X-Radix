@@ -4,7 +4,24 @@ public class Radix{
       return;
     }
 
-    MyLinkedList[] temp = new MyLinkedList[10];
+    MyLinkedList[] buckets = new MyLinkedList[10];
+    for( int i = 1; i < getLength(data) -1; i++){
+
+      // putting the numbers into the buckets
+      for(int j = 0; j < data.length -1; j++){
+        int index = getDigit(data[j], i); // gets the needed digit
+
+        if(data[j] >= 0){
+          buckets[index].add(data[j]);
+        } else {
+          buckets[index].add(data[j],0);
+        }
+      }
+
+      // now to get them out
+    }
+
+
 
   }
 
