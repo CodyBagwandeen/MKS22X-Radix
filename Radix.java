@@ -1,6 +1,7 @@
 public class Radix{
   public static void radixsort(int[] data){
-
+    MyLinkedList[] temp = new MyLinkedList[10];
+    
   }
 
   public static int getDigit(int num, int i){ // return the ith digit
