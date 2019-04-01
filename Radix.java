@@ -1,7 +1,11 @@
 public class Radix{
   public static void radixsort(int[] data){
+    if(data.length == 0 || data.length == 1){
+      return;
+    }
+
     MyLinkedList[] temp = new MyLinkedList[10];
-    
+
   }
 
   public static int getDigit(int num, int i){ // return the ith digit
@@ -10,6 +14,23 @@ public class Radix{
       i--;
     }
     return num % 10;
+  }
+
+
+
+  public static int getLength(int[] data) { // return the length of the largest digit in an array
+    int max = data[0];
+    for(int i = 1; i < data.length -1; i++){
+      if(Math.abs(data[i]) >= max){
+        max = Math.abs(data[i]);
+      }
+    }
+    int num = 0;
+    while(max > 0){
+      max = max / 10;
+      num++;
+    }
+    return num;
   }
 
   public static void main(String[] args){
