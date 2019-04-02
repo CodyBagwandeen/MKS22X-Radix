@@ -157,6 +157,12 @@ public class MyLinkedList{
   }
 
   public Integer removeFront(){
+    if( size == 1){
+      int temp = start.getData();
+      start = end = null;
+      size = 0;
+      return temp;
+    }
     Node temp = start;
     Node newStart = start.next();
     start = newStart;
@@ -185,9 +191,16 @@ public class MyLinkedList{
       L1.add(3);
       L1.add(4);
 
-      System.out.println(L1);
+      System.out.println(L1 + " size : " + L1.size());
       System.out.println(L1.removeFront());
-      System.out.println(L1);
+      System.out.println(L1 + " size : " + L1.size());
+
+      MyLinkedList L2 = new MyLinkedList();
+      L2.add(1);
+
+      System.out.println(L2 + " size : " + L2.size());
+      System.out.println(L2.removeFront());
+      System.out.println(L2 + " size : " + L2.size());
 
     }
 
