@@ -1,7 +1,8 @@
-public class MyLinkedList{
+public class MyLinkedList<E>{
   private int size;
   private Node start,end;
 
+  @SuppressWarnings("unchecked")
   public MyLinkedList(){
       start = null;
       end = null;
@@ -11,7 +12,7 @@ public class MyLinkedList{
   public int size() {
     return size;
   }
-  public boolean add(int value) {
+  public boolean add(E value) {
     if( size == 0) {
       Node n = new Node(value,null,null);
       start = n;
@@ -50,7 +51,7 @@ public class MyLinkedList{
     return output + n.getData() + "]";
   }
 
-  public Integer get(int index) {
+  public E get(int index) {
     if( index < 0 || index >= size)
     throw new IndexOutOfBoundsException("Index must be within list");
     Node current = start;
@@ -60,19 +61,19 @@ public class MyLinkedList{
     return current.getData();
   }
 
-  public Integer set(int index, Integer value) {
+  public E set(int index, E value) {
     if( index < 0 || index >= size)
     throw new IndexOutOfBoundsException("Index must be within list");
     Node current = start;
     for( int i = 0; i < index; i++) {
       current = current.next();
     }
-    Integer temp = current.getData();
+    E temp = current.getData();
     current.setData(value);
     return temp;
   }
 
-  public boolean contains( Integer value){
+  public boolean contains( E value){
     Node current = start;
     while( current != null) {
       if ( current.getData() == value)
@@ -82,7 +83,7 @@ public class MyLinkedList{
     return false;
     }
 
-  public int indexOf(Integer value){
+  public int indexOf(E value){
     if(contains(value)) {
       Node current = start;
       int index = 0;
@@ -95,7 +96,7 @@ public class MyLinkedList{
     return -1;
   }
 
-  public void add(int index, Integer value){
+  public void add(int index, E value){
     if( index < 0 || index > size)
     throw new IndexOutOfBoundsException("Index must be within list");
     Node n = new Node(value,null,null);
@@ -118,7 +119,7 @@ public class MyLinkedList{
     }
   }
 
-  public Integer remove(int index){
+  public E remove(int index){
     if( index < 0 || index >= size)
     throw new IndexOutOfBoundsException("Index must be within list");
     Node current = start;
@@ -148,7 +149,7 @@ public class MyLinkedList{
     return current.getData();
   }
 
-  public boolean remove(Integer value){
+  public boolean remove(E value){
     if(contains(value)) {
       remove(indexOf(value));
       return true;
@@ -156,9 +157,9 @@ public class MyLinkedList{
     return false;
   }
 
-  public Integer removeFront(){
+  public E removeFront(){
     if( size == 1){
-      int temp = start.getData();
+      E temp = start.getData();
       start = end = null;
       size = 0;
       return temp;
@@ -174,6 +175,7 @@ public class MyLinkedList{
     //in O(1) runtime, move the elements from other onto the end of this
     //The size of other is reduced to 0
     //The size of this is now the combined sizes of both original lists
+    @SuppressWarnings("unchecked")
    public void extend(MyLinkedList other){
       end.setNext(other.start);
       other.start.setPrev(end);
@@ -184,6 +186,7 @@ public class MyLinkedList{
       other.size = 0;
     }
 
+    @SuppressWarnings("unchecked")
     public static void main(String[] args){
       MyLinkedList L1 = new MyLinkedList();
       L1.add(1);
@@ -205,16 +208,18 @@ public class MyLinkedList{
     }
 
     public class Node{
- private Integer data;
+ private E data;
  private Node next,prev;
 
-public Node( Integer val, Node Next, Node previous) {
+
+
+public Node( E val, Node Next, Node previous) {
   data = val;
   next = Next;
   prev = previous;
 }
 
- public int getData() {
+ public E getData() {
    return data;
  }
 
@@ -234,8 +239,8 @@ public Node( Integer val, Node Next, Node previous) {
    prev = val;
  }
 
- public Integer setData(Integer i) {
-   Integer temp = data;
+ public E setData(E i) {
+   E temp = data;
    data = i;
    return temp;
  }

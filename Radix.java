@@ -5,10 +5,11 @@ public class Radix{
       return;
     }
 
-    MyLinkedList[] buckets = new MyLinkedList[19];
+    @SuppressWarnings("unchecked")
+    MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
     for(int i = 0; i < 19; i++){
       if ( buckets[i] == null){
-        buckets[i] = new MyLinkedList();
+        buckets[i] = new MyLinkedList<Integer>();
       }
     }
 
@@ -57,7 +58,7 @@ public class Radix{
       return 0;
     }
 
-    if( num <= 0) { // pos digits only
+    if( num < 0) { // pos digits only
       num = num * -1;
     }
 
@@ -68,8 +69,8 @@ public class Radix{
     return num % 10;
   }
 
-  public static int numDigits(int num){
-    if( num <= 0){
+  public static int numDigits(int num){ // number of digits
+    if( num < 0){
       num = num * -1;
     }
     int counter =0;
@@ -83,8 +84,8 @@ public class Radix{
 
 
   public static int getLength(int[] data) { // return the length of the largest digit in an array
-    int max = data[0];
-    for(int i = 1; i < data.length -1; i++){
+    int max = Math.abs(data[0]);
+    for(int i = 1; i < data.length ; i++){
       if(Math.abs(data[i]) >= max){
         max = Math.abs(data[i]);
       }
@@ -98,10 +99,10 @@ public class Radix{
     System.out.println("getDigit(-21, 1) : Should be 1, Actual : " + getDigit(-21,1) + "\n");
     System.out.println("numDigits(312) : Should be 3, Actual : " + numDigits(312) + "\n");
     System.out.println("numDigits(4) : Should be 1, Actual : " + numDigits(1)+ "\n");
-    int[] a1 = {1,22,312,74,8};
-    System.out.println("getLength(a1) : Should be 3, Actual : " + getLength(a1) + "\n");
+    int[] a1 = {1,22,312,74,8444};
+    System.out.println("getLength(a1) : Should be 4, Actual : " + getLength(a1) + "\n");
     radixsort(a1);
-    System.out.println("radixsort(a1) : Should be [1, 8, 22, 74, 312], Actual : " + Arrays.toString(a1) + "\n");
+    System.out.println("radixsort(a1) : Should be [1, 22, 74, 312, 8444], Actual : " + Arrays.toString(a1) + "\n");
     int[] a2 = {1,-22,312,-74,8};
     System.out.println("getLength(a2) : Should be 3, Actual : " + getLength(a2) + "\n");
     radixsort(a2);
