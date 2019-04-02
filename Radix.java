@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class Radix{
   public static void radixsort(int[] data){
     if(data.length == 0 || data.length == 1){
@@ -5,11 +6,15 @@ public class Radix{
     }
 
     MyLinkedList[] buckets = new MyLinkedList[10];
-    for( int i = 1; i < getLength(data) -1; i++){
+    for( int i = 1; i < getLength(data); i++){
 
       // putting the numbers into the buckets
       for(int j = 0; j < data.length -1; j++){
         int index = getDigit(data[j], i); // gets the needed digit
+
+        System.out.println();
+        System.out.println("" + index);
+        System.out.println("" + data[j]);
 
         if(data[j] >= 0){
           buckets[index].add(data[j]);
@@ -19,18 +24,36 @@ public class Radix{
       }
 
       // now to get them out
+      int counter = 0;
+      for(int j = 0; j < 10; j++){
+        for(int k = 0; k < buckets[j].size() -1; k++){
+          int temp = buckets[j].removeFront();
+          data[counter++] = temp;
+        }
+      }
     }
-
-
 
   }
 
   public static int getDigit(int num, int i){ // return the ith digit
+    if( i > numDigits(num)){
+      return 0;
+    }
+
     while( i > 1){
       num = num / 10;
       i--;
     }
     return num % 10;
+  }
+
+  public static int numDigits(int num){
+    int counter =0;
+    while(num > 0){
+      num = num / 10;
+      counter++;
+    }
+    return counter;
   }
 
 
@@ -42,18 +65,18 @@ public class Radix{
         max = Math.abs(data[i]);
       }
     }
-    int num = 0;
-    while(max > 0){
-      max = max / 10;
-      num++;
-    }
-    return num;
+    return numDigits(max);
   }
 
   public static void main(String[] args){
-    System.out.println("getDigit(51, 1) : Should be 1, Actual : " + getDigit(51,1));
+    System.out.println("getDigit(51, 3) : Should be 0, Actual : " + getDigit(51,3));
     System.out.println("getDigit(12345,3) : Should be 3, Actual : " + getDigit(12345,3));
-    int[] a1 = {1,22,312,44,51,62,74,8};
+    System.out.println("numDigits(312) : Should be 3, Actual : " + numDigits(312));
+    System.out.println("numDigits(4) : Should be 1, Actual : " + numDigits(1));
+    int[] a1 = {1,22,312,74,8};
     System.out.println("getLength(a1) : Should be 3, Actual : " + getLength(a1));
+    System.out.println("radixsort(a1) : Should be [1,8,22,74,312], Actual : ");
+    radixsort(a1);
+    System.out.print(Arrays.toString(a1));
   }
 }
