@@ -178,6 +178,19 @@ public class MyLinkedList{
       other.size = 0;
     }
 
+    public static void main(String[] args){
+      MyLinkedList L1 = new MyLinkedList();
+      L1.add(1);
+      L1.add(2);
+      L1.add(3);
+      L1.add(4);
+
+      System.out.println(L1);
+      System.out.println(L1.removeFront());
+      System.out.println(L1);
+
+    }
+
     public class Node{
  private Integer data;
  private Node next,prev;

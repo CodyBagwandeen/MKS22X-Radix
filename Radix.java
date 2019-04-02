@@ -6,10 +6,17 @@ public class Radix{
     }
 
     MyLinkedList[] buckets = new MyLinkedList[10];
-    for( int i = 1; i < getLength(data); i++){
+    for(int i = 0; i < 10; i++){
+      if ( buckets[i] == null){
+        buckets[i] = new MyLinkedList();
+      }
+    }
+
+    System.out.println("\nFor this length it should be 3 " + getLength(data)); // should be 3 for the time being
+    for( int i = 1; i <= getLength(data); i++){
 
       // putting the numbers into the buckets
-      for(int j = 0; j < data.length -1; j++){
+      for(int j = 0; j < data.length ; j++){
         int index = getDigit(data[j], i); // gets the needed digit
 
         System.out.println();
@@ -28,9 +35,12 @@ public class Radix{
       for(int j = 0; j < 10; j++){
         for(int k = 0; k < buckets[j].size() -1; k++){
           int temp = buckets[j].removeFront();
-          data[counter++] = temp;
+          data[counter] = temp;
+          counter++;
         }
       }
+
+      System.out.println(Arrays.toString(data));
     }
 
   }
