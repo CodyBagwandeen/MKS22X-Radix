@@ -7,13 +7,12 @@ public class Radix{
 
     @SuppressWarnings("unchecked")
     MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
-    for(int i = 0; i < 19; i++){
+    for(int i = 0; i < 20; i++){ // initiate the buckets
       if ( buckets[i] == null){
         buckets[i] = new MyLinkedList<Integer>();
       }
     }
 
-    //System.out.println("\nFor this length it should be 3 : " + getLength(data)); // should be 3 for the time being
     for( int i = 1; i <= getLength(data); i++){
 
       // putting the numbers into the buckets
@@ -35,7 +34,7 @@ public class Radix{
       // now to get them out
       //System.out.println("taking them out");
       int counter = 0;
-      for(int j = 0; j < 19; j++){
+      for(int j = 0; j < 20; j++){
         int s = buckets[j].size();
         //System.out.println("buckets[" + j + "]" + " : " + buckets[j]);
         //System.out.println("s = " + s);
@@ -94,6 +93,7 @@ public class Radix{
   }
 
   public static void main(String[] args){
+
     System.out.println("getDigit(51, 3) : Should be 0, Actual : " + getDigit(51,3) + "\n");
     System.out.println("getDigit(12345,3) : Should be 3, Actual : " + getDigit(12345,3) + "\n");
     System.out.println("getDigit(-21, 1) : Should be 1, Actual : " + getDigit(-21,1) + "\n");
@@ -108,4 +108,5 @@ public class Radix{
     radixsort(a2);
     System.out.println("radixsort(a2) : Should be [-74, -22, 1, 8, 312], Actual : " + Arrays.toString(a2));
   }
+
 }
