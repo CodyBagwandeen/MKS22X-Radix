@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.*;
 public class Radix{
   public static void radixsort(int[] data){
     if(data.length == 0 || data.length == 1){
@@ -107,6 +107,23 @@ public class Radix{
     System.out.println("getLength(a2) : Should be 3, Actual : " + getLength(a2) + "\n");
     radixsort(a2);
     System.out.println("radixsort(a2) : Should be [-74, -22, 1, 8, 312], Actual : " + Arrays.toString(a2));
+
+    int[] test = {12,512,-1231, 51, -7238, 6, -18, 162, 59, -8123, 2};
+    int[] testC = {12,512,-1231, 51, -7238, 6, -18, 162, 59, -8123, 2};
+    System.out.println("\nTest Array: " + Arrays.toString(test) + "\nCopy of Test Array : " + Arrays.toString(testC));
+
+    int[] testB = {-8123, -7238, -1231, -18, 2, 6, 12, 51, 59, 162, 512};
+    testC = testB;
+    radixsort(test);
+
+    System.out.println(" \nSorted Test Array : " + Arrays.toString(test));
+    System.out.println(" \nSorted Copy : " + Arrays.toString(testC));
+    if(Arrays.toString(test).equals(Arrays.toString(testC))){
+      System.out.println("\nSucessful Sort");
+    } else {
+      System.out.println("\nFailed Sort");
+    }
+
   }
 
 }
